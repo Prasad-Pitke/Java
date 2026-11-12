@@ -1,5 +1,6 @@
 package com.thealgorithms.maths;
 
+
 /**
  * A utility class for computing exponentiation (power) of integers.
  * <p>
@@ -10,6 +11,7 @@ package com.thealgorithms.maths;
 public final class Pow {
     private Pow() {
     }
+
 
     /**
      * Computes the value of the base raised to the power of the exponent.
@@ -22,6 +24,7 @@ public final class Pow {
      * @param b the exponent to which the base {@code a} is raised. Must be a non-negative integer.
      * @return the result of {@code a}<sup>{@code b}</sup> as a {@code long}.
      * @throws IllegalArgumentException if {@code b} is negative.
+     * @throws ArithmeticException if the result overflows a {@code long}.
      */
     public static long pow(int a, int b) {
         if (b < 0) {
@@ -29,8 +32,9 @@ public final class Pow {
         }
         long result = 1;
         for (int i = 1; i <= b; i++) {
-            result *= a;
+            result = Math.multiplyExact(result, (long) a);
         }
         return result;
     }
 }
+
